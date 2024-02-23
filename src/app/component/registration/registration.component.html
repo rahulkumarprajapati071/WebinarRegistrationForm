@@ -1,0 +1,109 @@
+<div class="bg-gray-300">
+  <div class="container mx-auto p-4">
+    <div
+      class="max-w-lg mx-auto  bg-white shadow-md rounded px-4 pt-4 pb-4 mb-4"
+    >
+      <div class="allContent" *ngIf="!isRegistered">
+        <img
+          src="../../../assets/banner.png"
+          alt="Webinar Image"
+          class="mx-auto mb-3 max-w-full h-auto lg:max-w-full lg:max-h-90"
+        />
+        <h2 class="text-2xl mb-2 text-center font-semibold">
+          Registration Form for Webinar on Mastering GitHub<br><hr class="mt-3">
+          Date: 02/03/2024<br>
+          Time: 07:00 - 10:30 PM<hr class="my-3">
+        </h2>
+        <!-- Countdown timer -->
+  <div *ngIf="countdownTime > 0">
+    <div class="text-2xl text-center font-semibold">
+      <p><i class="fas fa-clock"></i> {{ formatCountdownTime() }}</p><br>
+    </div>
+  </div>
+  <div *ngIf="countdownTime <= 0">
+    <p>The webinar has started!</p>
+  </div>
+        <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="fullname"
+              >Full Name</label
+            >
+            <input
+              formControlName="fullName"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="fullname"
+              type="text"
+              placeholder="Your Name"
+            />
+            <small
+              class="text-danger"
+              *ngIf="
+                !studentForm.get('fullName')?.valid &&
+                studentForm.get('fullName')?.touched
+              "
+              >Please enter FullName</small
+            >
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="email"
+              >Email</label
+            >
+            <input
+              formControlName="email"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="email"
+              type="email"
+              placeholder="Email"
+            />
+            <small
+              class="text-danger"
+              *ngIf="
+                !studentForm.get('email')?.valid &&
+                studentForm.get('email')?.touched
+              "
+              >Please enter valid email</small
+            >
+          </div>
+          <div class="mb-6">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="about"
+              >Please mention something about Yourself?</label
+            >
+            <textarea
+              formControlName="aboutYourSelf"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="about"
+              placeholder="Your message here"
+              rows="4"
+            ></textarea>
+            <small
+              class="text-danger"
+              *ngIf="
+                !studentForm.get('aboutYourSelf')?.valid &&
+                studentForm.get('aboutYourSelf')?.touched
+              "
+              >Please mention something about yourself</small
+            >
+          </div>
+          <!-- <small class="text-danger">{{response}}</small> -->
+          <div class="flex items-center justify-between">
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+      <div *ngIf="isRegistered">
+        <p>{{response}}</p>
+      </div>
+    </div>
+  </div>
+</div>
