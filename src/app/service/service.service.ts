@@ -9,7 +9,7 @@ import { ApiResponse } from '../interface/api-response';
 })
 export class ServiceService {
   constructor(private http:HttpClient) { }
-  private appUrl:string = 'http://glootech.eu-north-1.elasticbeanstalk.com/student';
+  private appUrl:string = 'https://webinarform-c78x.onrender.com/student';
   saveStudentData(obj: StudentData): Observable<ApiResponse> {
     return this.http.post<ApiResponse>(`${this.appUrl}/save`, obj);
   }
